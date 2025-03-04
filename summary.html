@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Summary / Objective</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="summary">
+    <div class="container">
+        <h2>Summary / Objective</h2>
+        <div class="form-box">
+            <h3>Summary / Objective</h3>
+            <textarea id="summary" placeholder="A short professional summary or career objective..."></textarea>
+            <button type="button" onclick="saveAndNext()">Save and Next</button>
+        </div>
+    </div>
+    <script>
+        function saveAndNext() {
+            const summary = document.getElementById("summary").value.trim();
+            if (!summary) {
+                alert("Please fill in your summary/objective.");
+                return;
+            }
+
+            localStorage.setItem("summary", summary);
+
+            document.querySelector(".form-box").classList.add("fade-out");
+
+            setTimeout(() => {
+                window.location.href = "experience.html"; // Move to next section (experience page)
+            }, 500);
+        }
+
+        // Pre-fill if data already exists (for back and forth navigation)
+        document.addEventListener("DOMContentLoaded", function() {
+            const savedSummary = localStorage.getItem("summary");
+            if (savedSummary) {
+                document.getElementById("summary").value = savedSummary;
+            }
+        });
+    </script>
+</body>
+</html>

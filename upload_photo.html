@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Upload Photo</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="upload_photo">
+    <div class="container">
+        <h2>Upload Your Photo</h2>
+        <div class="form-box">
+            <input type="file" id="photoInput" accept="image/*">
+            <br><br>
+            <img id="previewImage" style="width: 200px; height: 200px; background-color: #fefae0; object-fit: cover;">
+            <br><br>
+            <button onclick="saveAndNext()">Save and Next</button>
+        </div>
+    </div>
+
+    <script>
+        const photoInput = document.getElementById('photoInput');
+        const previewImage = document.getElementById('previewImage');
+
+        photoInput.addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    previewImage.src = e.target.result;
+                    localStorage.setItem('photo', e.target.result);  // Save as Base64
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        function saveAndNext() {
+            window.location.href = 'choose_template.html';
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedPhoto = localStorage.getItem('photo');
+            if (savedPhoto) {
+                previewImage.src = savedPhoto;
+            }
+        });
+    </script>
+</body>
+</html>

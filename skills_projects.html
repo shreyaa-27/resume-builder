@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Skills & Projects</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="skills_projects">
+    <div class="container">
+        <h2>Skills & Projects</h2>
+        <div class="form-box">
+
+            <h3>SKILLS</h3>
+            <label><b>List of Key Skills (Technical & Soft Skills)</b></label>
+            <textarea id="skills" placeholder="e.g., Python, Java, Teamwork, Communication"></textarea>
+
+            <h3>PROJECTS</h3>
+            <label><b>Project Name</b></label>
+            <input type="text" id="projectName" placeholder="e.g., Portfolio Website">
+
+            <label><b>Short Description</b></label>
+            <textarea id="projectDescription" placeholder="Brief description of the project"></textarea>
+
+            <label><b>Technologies Used</b></label>
+            <input type="text" id="technologies" placeholder="e.g., HTML, CSS, JS">
+
+            <button onclick="saveAndNext()">Save and Next</button>
+        </div>
+    </div>
+
+    <script>
+        function saveAndNext() {
+    const skillsProjectsData = {
+        skills: document.getElementById('skills').value,
+        projectName: document.getElementById('projectName').value,
+        projectDescription: document.getElementById('projectDescription').value,
+        technologies: document.getElementById('technologies').value
+    };
+
+    localStorage.setItem('skillsProjects', JSON.stringify(skillsProjectsData));
+
+    // Redirect to Upload Photo page (next step in your flow)
+    window.location.href = 'upload_photo.html';  // 👈 Link to next screen
+}
+
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedData = JSON.parse(localStorage.getItem('skillsProjects') || '{}');
+            document.getElementById('skills').value = savedData.skills || '';
+            document.getElementById('projectName').value = savedData.projectName || '';
+            document.getElementById('projectDescription').value = savedData.projectDescription || '';
+            document.getElementById('technologies').value = savedData.technologies || '';
+        });
+    </script>
+</body>
+</html>

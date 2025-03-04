@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Work Experience</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="experience">
+    <div class="container">
+        <h2>Work Experience</h2>
+        <div class="form-box">
+            <h3>WORK EXPERIENCE</h3>
+
+            <label for="jobTitle"><b>Job Title</b></label>
+            <input type="text" id="jobTitle">
+
+            <label for="companyName"><b>Company Name</b></label>
+            <input type="text" id="companyName">
+
+            <label for="location"><b>Location</b></label>
+            <input type="text" id="location">
+
+            <label for="startDate"><b>Start Date</b></label>
+            <input type="date" id="startDate">
+
+            <label for="endDate"><b>End Date</b></label>
+            <input type="date" id="endDate">
+
+            <label for="responsibilities"><b>Job Responsibilities</b></label>
+            <textarea id="responsibilities"></textarea>
+
+            <button onclick="saveAndNext()">Save and Next</button>
+        </div>
+    </div>
+
+    <script>
+        function saveAndNext() {
+            const data = {
+                jobTitle: document.getElementById("jobTitle").value,
+                companyName: document.getElementById("companyName").value,
+                location: document.getElementById("location").value,
+                startDate: document.getElementById("startDate").value,
+                endDate: document.getElementById("endDate").value,
+                responsibilities: document.getElementById("responsibilities").value
+            };
+
+            if (!data.jobTitle || !data.companyName || !data.startDate) {
+                alert("Please fill in all required fields!");
+                return;
+            }
+
+            localStorage.setItem("workExperience", JSON.stringify(data));
+
+            window.location.href = "education.html";
+        }
+
+        document.addEventListener("DOMContentLoaded", () => {
+            const savedData = JSON.parse(localStorage.getItem("workExperience") || "{}");
+            document.getElementById("jobTitle").value = savedData.jobTitle || "";
+            document.getElementById("companyName").value = savedData.companyName || "";
+            document.getElementById("location").value = savedData.location || "";
+            document.getElementById("startDate").value = savedData.startDate || "";
+            document.getElementById("endDate").value = savedData.endDate || "";
+            document.getElementById("responsibilities").value = savedData.responsibilities || "";
+        });
+    </script>
+</body>
+</html>

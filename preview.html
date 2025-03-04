@@ -1,0 +1,27 @@
+\<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Resume Preview</title>
+    <link id="templateStylesheet" rel="stylesheet">
+</head>
+<body>
+    <div id="resumeContainer">
+        <iframe id="resumeFrame" width="100%" height="1000px" style="border:none;"></iframe>
+    </div>
+
+    <button onclick="downloadPDF()">Download as PDF</button>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const template = localStorage.getItem("selectedTemplate") || "template1";
+            document.getElementById('resumeFrame').src = `${template}.html`; // Load the selected template
+        });
+
+        function downloadPDF() {
+            const element = document.getElementById("resumeContainer");
+            html2pdf().from(element).save();
+        }
+    </script>
+</body>
+</html>

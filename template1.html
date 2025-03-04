@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Template 1</title>
+    <link rel="stylesheet" href="template1.css">
+</head>
+<body>
+    <div class="resume-container">
+        <header>
+            <img id="profile-pic" src="" alt="Profile Picture">
+            <h1 id="name">Your Name</h1>
+        </header>
+        <div class="content">
+            <div class="left">
+                <div class="section"><h2>Summary</h2><p id="summary"></p></div>
+                <div class="section"><h2>Contact</h2>
+                    <p><img src="phone-icon.png"> <span id="phone"></span></p>
+                    <p><img src="email-icon.png"> <span id="email"></span></p>
+                    <p><img src="location-icon.png"> <span id="location"></span></p>
+                </div>
+                <div class="section"><h2>Language</h2><p id="language"></p></div>
+            </div>
+            <div class="divider"></div> <!-- Middle Line -->
+            <div class="right">
+                <div class="section"><h2>Experience</h2><p id="experience"></p></div>
+                <div class="section"><h2>Education</h2><p id="education"></p></div>
+                <div class="section"><h2>Skills & Projects</h2><p id="skills-projects"></p></div>
+            </div>
+        </div>
+    </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            document.getElementById("name").textContent = localStorage.getItem("fullName") || "Your Name";
+            document.getElementById("summary").textContent = localStorage.getItem("summary") || "";
+            document.getElementById("phone").textContent = localStorage.getItem("phone") || "";
+            document.getElementById("email").textContent = localStorage.getItem("email") || "";
+            document.getElementById("location").textContent = localStorage.getItem("address") || "";
+            document.getElementById("language").textContent = localStorage.getItem("language") || "";
+            document.getElementById("experience").textContent = localStorage.getItem("experience") || "";
+            document.getElementById("education").textContent = localStorage.getItem("education") || "";
+            document.getElementById("skills-projects").textContent = localStorage.getItem("skillsProjects") || "";
+
+            let profilePic = localStorage.getItem("photo");
+            if (profilePic) {
+                document.getElementById("profile-pic").src = profilePic;
+            }
+        });
+    </script>
+</body>
+</html>

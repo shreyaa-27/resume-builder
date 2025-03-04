@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Education</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="education">
+    <div class="container">
+        <h2>Education</h2>
+        <div class="form-box">
+            <h3>EDUCATION</h3>
+
+            <label><b>Degree Name</b></label>
+            <input type="text" id="degreeName" placeholder="e.g., Bachelor of Science in Computer Science">
+
+            <label><b>University/College Name</b></label>
+            <input type="text" id="collegeName" placeholder="e.g., XYZ University">
+
+            <label><b>Location (City, Country)</b></label>
+            <input type="text" id="educationLocation" placeholder="e.g., New York, USA">
+
+            <label><b>Year of Completion</b></label>
+            <input type="text" id="completionYear" placeholder="e.g., 2025">
+
+            <button onclick="saveAndNext()">Save and Next</button>
+        </div>
+    </div>
+
+    <script>
+        function saveAndNext() {
+            const educationData = {
+                degreeName: document.getElementById('degreeName').value,
+                collegeName: document.getElementById('collegeName').value,
+                location: document.getElementById('educationLocation').value,
+                yearOfCompletion: document.getElementById('completionYear').value
+            };
+
+            localStorage.setItem('education', JSON.stringify(educationData));
+
+            window.location.href = 'skills_projects.html';
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedData = JSON.parse(localStorage.getItem('education') || '{}');
+            document.getElementById('degreeName').value = savedData.degreeName || '';
+            document.getElementById('collegeName').value = savedData.collegeName || '';
+            document.getElementById('educationLocation').value = savedData.location || '';
+            document.getElementById('completionYear').value = savedData.yearOfCompletion || '';
+        });
+    </script>
+    <script src="script.js"></script>
+</body>
+</html>
